@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Search</title>
+        <style>
+            body {
+                font-family: arial, sans-serif;
+            }
+        	form {
+        		text-align: center;
+        		position: relative;
+        		top: 300px;
+        		left: 225px;
+        		
+
+        	}
+        	#button {
+        		position: relative;
+        		top: 30px;
+        		right: 370px;
+                text-align: center;
+        		
+
+        	}
+        	#search-bar {
+        		border-radius: 10px;
+        		width: 500px;
+        		height: 25px;
+        		border-style: solid;
+        		border-width: 1px;
+        		border-color: grey;
+        		font-size: 15px;
+        	}
+        	a:hover {
+        		text-decoration: underline;
+        	}
+        	a {
+        		text-decoration: none;
+        		color: black;
+        		float: right;
+        		padding: 10px;
+        	}
+        	
+
+        </style>
+    </head>
+    <body>
+    	<a href = "imagesearch.html">Image Search</a>
+    	<a href = "advancedsearch.html">Advanced Search</a>
+    	
+        <form action="https://google.com/search">
+            <input type="text" name="q" id = "search-bar" placeholder="Search Google or type in a URL">
+            <input type="submit"  value="Google Search" id = "button" >
+            <input type = "submit" value ="I'm Feeling Lucky" id = "button" name = "btnI">
+        </form>
+
+    </body>
+</html>
