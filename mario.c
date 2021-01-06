@@ -36,6 +36,7 @@ for (int i = 0; i < height; ++i) {
 
   }
   printf(" ");
+  printf(" ");
   for (int a = 0; a < n; ++a) {
     printf("#");
   }
