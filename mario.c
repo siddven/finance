@@ -26,6 +26,7 @@ for (int i = 0; i < height; ++i) {
 
   n += 1;
   int u = height - i;
+  u += 1;
   for (int t = 0; t < u; ++t) {
     printf(" ");
   }
