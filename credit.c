@@ -26,7 +26,7 @@ int main(void)
          }
 
 
-    while (cardnumber < 1000000000000);
+    while (cardnumber < 1000000000);
 
     for (int i = 0; i < 16; ++i ) {
          a = cardnumber % mult;
@@ -65,7 +65,7 @@ int main(void)
     }
     else if (cardnumber / 100000000000000 == 55|| cardnumber / 100000000000000 == 54 || cardnumber / 100000000000000 == 53 || cardnumber / 100000000000000 == 52 || cardnumber / 100000000000000 == 51 ) {
         if (an ==0) {
-            
+
             printf("MASTERCARD\n");
 
         }
