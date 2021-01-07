@@ -13,8 +13,10 @@ int main(void)
    long addb = 0;
    long addall = 0;
 
+
     bool check = false;
     do {
+
          cardnumber = get_long("Enter a card number:");
          mult = 100;
 
@@ -38,29 +40,45 @@ int main(void)
          mult = mult *100;
          mult2 = mult2 * 100;
          mult3 = mult3 * 100;
-
+         
+         //printf("%li\n", b);
 
          }
-         addall = addb+ add;
-
-         if (addall % 10 == 0) {
-             check = true;
-         }
-
 
     }
-    while (cardnumber < 1000000000000 && check == false );
+    while (cardnumber < 1000000000000);
+         addall = addb + add;
+         
+         long an = addall % 10;
+         printf("%li\n", an);
+         if (an > 0) {
+             printf("INVALID\n");
+         }
 
-    if (cardnumber / 1000000000000 == 4 || cardnumber / 1000000000000000 == 4 ) {
-        printf("VISA\n");
+
+    if (cardnumber / 1000000000000 == 4 || cardnumber / 1000000000000000 == 4) {
+        if (an == 0) {
+            printf("VISA\n");
+
+        }
+
     }
     else if (cardnumber / 100000000000000 == 55|| cardnumber / 100000000000000 == 54 || cardnumber / 100000000000000 == 53 || cardnumber / 100000000000000 == 52 || cardnumber / 100000000000000 == 51 ) {
-        printf("MASTERCARD\n");
+        if (an ==0) {
+            printf("MASTERCARD\n");
+
+        }
+
     }
     else if (cardnumber / 10000000000000 == 34 || cardnumber / 10000000000000 == 37) {
-        printf("AMEX\n");
+        if (an == 0) {
+            printf("AMEX\n");
+
+        }
+
     }
     else {
         printf("INVALID\n");
     }
 }
+
