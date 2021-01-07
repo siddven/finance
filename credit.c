@@ -48,6 +48,7 @@ int main(void)
          h = h /1000000000000;
          h = h * 2;
          i = cardnumber % 10;
+         i = i / 1;
          j = cardnumber % 1000;
          j = j / 100;
          k = cardnumber % 100000;
@@ -76,10 +77,10 @@ int main(void)
 
 
     }
-    while (cardnumber < 1000000000000 && check == true);
-    printf("%li\n",a);
-    printf("%li\n",b);
-    printf("%li\n",h);
+    while (cardnumber < 1000000000000 && check == true );
+    printf("%li\n", o);
+    printf("%li\n",p);
+
     if (cardnumber / 1000000000000 == 4 || cardnumber / 1000000000000000 == 4 ) {
         printf("VISA\n");
     }
