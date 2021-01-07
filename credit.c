@@ -40,7 +40,7 @@ int main(void)
          mult = mult *100;
          mult2 = mult2 * 100;
          mult3 = mult3 * 100;
-         
+
          //printf("%li\n", b);
 
          }
@@ -48,12 +48,10 @@ int main(void)
     }
     while (cardnumber < 1000000000000);
          addall = addb + add;
-         
+
          long an = addall % 10;
          printf("%li\n", an);
-         if (an > 0) {
-             printf("INVALID\n");
-         }
+
 
 
     if (cardnumber / 1000000000000 == 4 || cardnumber / 1000000000000000 == 4) {
@@ -77,6 +75,8 @@ int main(void)
         }
 
     }
-   
+    else if (an > 0) {
+        printf("INVALID\n");
+    }
 }
 
