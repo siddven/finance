@@ -18,13 +18,16 @@ int main(void)
     int score2 = compute_score(word2);
 
     // TODO: Print the winner
-    if (score1 > score2) {
+    if (score1 > score2) 
+    {
         printf("Player 1 wins!");
     }
-    else if (score2 > score1) {
+    else if (score2 > score1) 
+    {
         printf("Player 2 wins!");
     }
-    else if (score1 == score2) {
+    else if (score1 == score2) 
+    {
         printf("Tie!");
     }
 }
@@ -33,11 +36,12 @@ int compute_score(string word)
 {
     int score = 0;
 
-    for (int j = 0, a = strlen(word); j < a; j++) {
+    for (int j = 0, a = strlen(word); j < a; j++) 
+    {
         word[j] = toupper(word[j]);
     }
 
-   for (int i = 0, n = strlen(word); i < n; i++)
+    for (int i = 0, n = strlen(word); i < n; i++)
     {
         if (word[i] >= 'A' && word[i] <= 'Z')
         {
@@ -45,7 +49,7 @@ int compute_score(string word)
             score = score + POINTS[a];
         }
 
-    // TODO: Compute and return score for string
-}
-return score;
+        // TODO: Compute and return score for string
+    }
+    return score;
 }
