@@ -17,13 +17,13 @@ int main(void)
     float S = sentence(text) *average_letter;
 
     int index = 0.0588 * L - 0.296 * S - 15.8;
-
+    index = index + 1;
     if (index < 1) {
-        printf("Before Grade 1");
+        printf("Before Grade 1...");
 
     }
     if (index > 16 ) {
-        printf("Grade 16+");
+        printf("Grade 16+\n");
     }
     else {
         printf("Grade %i\n", index);
