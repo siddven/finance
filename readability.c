@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
+#include <math.h>
 float letter(string text);
 float word(string text);
 float sentence(string text);
@@ -17,7 +17,7 @@ int main(void)
     float S = sentence(text) *average_letter;
 
     int index = 0.0588 * L - 0.296 * S - 15.8;
-    index = index + 1;
+    round(index);
     if (index < 1) {
         printf("Before Grade 1...\n");
 
