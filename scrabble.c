@@ -48,7 +48,7 @@ int compute_score(string word)
             int a = word[i] - 65;
             score = score + POINTS[a];
         }
-
+        
         // TODO: Compute and return score for string
     }
     return score;
