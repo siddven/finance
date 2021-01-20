@@ -2,8 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-int charcount;
-int check = 2015;
+
 string abchigh = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 string abclow = "abcdefghijklmnopqrstuvwxyz";
 int thingy(char letter1, char letter2);
@@ -29,7 +28,6 @@ int main (int argc, string argv[])
 
         for (int i = 0, n = strlen(argv[1]); i < n; i++) {
             argv[1][i] =  toupper(argv[1][i]);
-            charcount += argv[1][i];
         }
         for (int j = 0, m = strlen(argv[1]); j < m; j++)
         {
@@ -38,10 +36,14 @@ int main (int argc, string argv[])
                     printf("This code has invalid characters. Stop.\n");
                     return 1;
                 }
-            if (charcount != check) {
-                printf("code is invalid because multiple of the same characters are present.");
-                return 1;
-            }
+                for (int k = 25; k > j; k--) {
+                    if (argv[1][j] == argv[1][k]) {
+                        printf("Your code cannot have repeating characters.");
+                        return 1;
+                    }
+                }
+
+
             }
         }
     }
@@ -76,7 +78,7 @@ int main (int argc, string argv[])
                     plain[i] += diff;
                     printf("%c", plain[i]);
                     plain[i] -= diff;
-                    
+
                     }
                     x ++;
 
