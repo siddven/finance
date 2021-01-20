@@ -36,11 +36,11 @@ int main (int argc, string argv[])
                     printf("This code has invalid characters. Stop.\n");
                     return 1;
                 }
-                if (arg[1][j] >= 32 && argv[1][j] <= 64) {
+                if (argv[1][j] >= 32 && argv[1][j] <= 64) {
                     printf("This code has invalid characters. Stop.\n");
                     return 1;
                 }
-                if (arg[1][j] >= 123  && argv[1][j] <= 126) {
+                if (argv[1][j] >= 123  && argv[1][j] <= 126) {
                     printf("This code has invalid characters. Stop.\n");
                     return 1;
                 }
