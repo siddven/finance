@@ -11,6 +11,7 @@ int thingy(char letter1, char letter2);
 int main (int argc, string argv[])
 {
     int x = 0;
+    int y = 0;
     //Checks if # of arguments is valid
     if (argc != 2)
     {
@@ -50,42 +51,47 @@ int main (int argc, string argv[])
             if (plain[i] >= 'a' && plain[i] <= 'z') {
                 int diff = 0;
                 do {
-                    x ++;
+
                     if (toupper(plain[i]) == abchigh[x]) {
                     diff = thingy(argv[1][x],abchigh[x]);
                     plain[i] += diff;
                     printf("%c", plain[i]);
                     plain[i] -= diff;
-                    }
-                }
-                while (x < 26);
-                x = 0;
 
+                    }
+                    x ++;
+                }
+                while (x < 27);
+                x = 0;
             }
             if (plain[i] >= 'A' && plain[i] <= 'Z') {
                 if (plain[i] >= 91 && plain[i] <= 96) {
                     printf("%c", plain[i]);
                 }
-                else {
+
                 int diff = 0;
                 do {
-                    x ++;
                     if (plain[i] == abchigh[x]) {
                     diff = thingy(argv[1][x],abchigh[x]);
                     plain[i] += diff;
                     printf("%c", plain[i]);
                     plain[i] -= diff;
+                    
                     }
+                    x ++;
+
+
                 }
-                while (x < 26);
+                while (x < 27);
                 x = 0;
-                }
+
         }
         if (plain[i] >= 32 && plain[i] <= 64) {
             printf("%c", plain[i]);
         }
 }
     printf("\n");
+
     }
 
 int thingy (char letter1, char letter2){
