@@ -25,7 +25,7 @@ int main (int argc, string argv[])
             printf("The code is invalid because the number of characters entered is invalid.\n");
             return 1;
         }
-        
+
         for (int i = 0, n = strlen(argv[1]); i < n; i++) {
             argv[1][i] =  toupper(argv[1][i]);
             charcount += argv[1][i];
@@ -45,7 +45,7 @@ int main (int argc, string argv[])
         }
     }
         string plain = get_string("plain text: ");
-        printf("cipher text: ");
+        printf("ciphertext: ");
         for (int i = 0, n = strlen(plain); i < n; i++) {
             if (plain[i] >= 'a' && plain[i] <= 'z') {
                 int diff = 0;
