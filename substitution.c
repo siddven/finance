@@ -31,19 +31,19 @@ int main (int argc, string argv[])
         }
         for (int j = 0, m = strlen(argv[1]); j < m; j++)
         {
-            if (argv[1][j] >= 'A' && argv[1][j] <= 'z') {
-                if (argv[1][j] >= 91 && argv[1][j] <= 96) {
+            if (argv[1][j] >= 91 && argv[1][j] <= 96) {
                     printf("This code has invalid characters. Stop.\n");
                     return 1;
                 }
-                if (argv[1][j] >= 32 && argv[1][j] <= 64) {
+            else if (argv[1][j] >= 32 && argv[1][j] <= 64) {
                     printf("This code has invalid characters. Stop.\n");
                     return 1;
                 }
-                if (argv[1][j] >= 123  && argv[1][j] <= 126) {
+            else if (argv[1][j] >= 123  && argv[1][j] <= 126) {
                     printf("This code has invalid characters. Stop.\n");
                     return 1;
                 }
+            else {
 
                 for (int k = 25; k > j; k--) {
                     if (argv[1][j] == argv[1][k]) {
