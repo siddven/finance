@@ -1,0 +1,15 @@
+sort1 uses: bubble sort
+
+How do you know?:  In a reversed list of numbers, bubble would take a significantly more time than a selection sort 
+algorithm would take, and this happens in both reversed lists (10000 and 5000).
+
+sort2 uses: merge sort
+
+How do you know?: sort2 spends significantly less time in a random list, while the other two take more time. This
+makes sense because the amount of steps needed for merge sort would be O(n log n), much less than O(n^2) for both bubble and 
+selection sort. 
+
+sort3 uses: selection sort
+
+How do you know?: In a reversed list of numbers, sort3 would take a significantly less time than a bubble sort 
+algorithm would take, and this happens in both reversed lists (10000 and 5000). 
