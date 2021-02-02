@@ -66,14 +66,26 @@ int main(int argc, string argv[])
 // Update vote totals given a new vote
 bool vote(string name)
 {
-    for (int i = 0; i <= candidate_count; i++) {
-        if (strcmp(candidates[i].name, name) == 0) {
-            candidates[i].votes += 1;
+   int x = 0;
+   do {
+
+       if (strcmp(candidates[x].name, name) == 0) {
+            candidates[x].votes += 1;
             return true;
         }
+        else {
+            return false;
+        }
+        x ++;
+
+   }
+   while (x <= candidate_count);
+
+
     }
-    return false;
-}
+
+
+
 
 // Print the winner (or winners) of the election
 void print_winner(void)
