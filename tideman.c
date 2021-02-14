@@ -104,6 +104,7 @@ bool vote(int rank, string name, int ranks[])
         if (strcmp(name,candidates[i]) == 0) {
             truorfalse = 1;
             ranks[rank] = i;
+            printf("%i",ranks[i]);
 
 
         }
@@ -121,23 +122,21 @@ if (truorfalse == 1) {
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
-    for (int i = 0; i < candidate_count; i++) 
+    int h = candidate_count-1;
+    for (int i = 0; i < candidate_count; i++)
     {
-       for (int j = candidate_count; j > i; j--) 
+       for (int j = h; j >= 0; j--)
        {
-           if (i == ranks[j])
-           {
-               for (int a = 0; a < candidate_count; a++)
-               {
-                   preferences[i][a] = 0;
-                   
-               }
-                   
-               
-           }
+          if (i == ranks[j])
+          {
+            printf("%i\n", i);
+            printf("%s\n",candidates[j]);
+          }
+
+
        }
     }
-   
+
     return;
 }
 
