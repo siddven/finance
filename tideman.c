@@ -121,7 +121,23 @@ if (truorfalse == 1) {
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
-    // TODO
+    for (int i = 0; i < candidate_count; i++) 
+    {
+       for (int j = candidate_count; j > i; j--) 
+       {
+           if (i == ranks[j])
+           {
+               for (int a = 0; a < candidate_count; a++)
+               {
+                   preferences[i][a]++;
+                   
+               }
+                   
+               
+           }
+       }
+    }
+   
     return;
 }
 
