@@ -99,17 +99,19 @@ int main(int argc, string argv[])
 // Update ranks given a new vote
 bool vote(int rank, string name, int ranks[])
 {
+
+
+
     int truorfalse = 0;
     for (int i = 0; i < candidate_count; i++) {
         if (strcmp(name,candidates[i]) == 0) {
             truorfalse = 1;
             ranks[rank] = i;
-            printf("%i",ranks[i]);
-
 
         }
-
     }
+
+
 if (truorfalse == 1) {
         return true;
     }
@@ -122,21 +124,15 @@ if (truorfalse == 1) {
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
-    int h = candidate_count-1;
-    for (int i = 0; i < candidate_count; i++)
-    {
-       for (int j = h; j >= 0; j--)
+   for (int i = 0; i < candidate_count; i++)
+   {
+       preferences[i][i] = 0;
+       for (int j = i; j < candidate_count-i; j ++)
        {
-          if (i == ranks[j])
-          {
-            printf("%i\n", i);
-            printf("%s\n",candidates[j]);
-          }
-
-
+          preferences[i][j+1] += 1;
+          printf("%i\n", preferences[i][j]);
        }
-    }
-
+   }
     return;
 }
 
