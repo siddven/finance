@@ -126,7 +126,7 @@ void record_preferences(int ranks[])
 {
    for (int i = 0; i < candidate_count; i++)
    {
-               if (preferences[i][i] > 1000 || preferences[i][i] < 0 )
+               if (preferences[i][i] == 0)
                {
                preferences[i][i] = 0;
                }
