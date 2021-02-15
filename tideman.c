@@ -123,25 +123,29 @@ if (truorfalse == 1) {
 
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
-
 {
-    // WORKS
-    for (int i = 0; i < candidate_count; i++)
-    {
-        for (int j = i;  j < candidate_count; j++)
-        {
-            //update preferences based on current rank. Add dont change as it will record multiple users.
-            if (ranks[i] != ranks[j])
-            {
-                preferences[ranks[i]][ranks[j]]++;
+   for (int i = 0; i < candidate_count; i++)
+   {
 
-            }
-        }
-    }
-    return;
+               for (int j = i; j < candidate_count; j ++)
+       {
+           if (ranks[i] != ranks[j])
+           {
+          preferences[ranks[i]][ranks[j]] += 1;
 }
 
+       }
+           }
+   for (int i = 0; i < candidate_count; i++)
+   {
+       for (int j = 0; j < candidate_count; j++)
+       {
+           printf("%i\n", preferences[i][j]);
+       }
+   }
 
+    return;
+}
 
 // Record pairs of candidates where one is preferred over the other
 void add_pairs(void)
