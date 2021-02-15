@@ -153,7 +153,7 @@ void add_pairs(void)
     for (int i = 0; i < candidate_count; i++)
     {
         int a = 0;
-        a ++;
+
         for (int j = 0; j < candidate_count; j++)
         {
 
@@ -170,6 +170,7 @@ void add_pairs(void)
                     pair_count ++;
                 }
         }
+        a++;
 
         }
         return;
