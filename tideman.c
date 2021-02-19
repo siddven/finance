@@ -91,6 +91,10 @@ int main(int argc, string argv[])
 
     add_pairs();
     sort_pairs();
+    for (int i = 0; i < pair_count; i++)
+    {
+       printf("%i wins over %i\n", pairs[i].winner, pairs[i].loser);
+    }
     lock_pairs();
     print_winner();
     return 0;
@@ -213,16 +217,34 @@ void sort_pairs(void)
         pairs[i] = y;
     }
 
-for (int i = 0; i < candidate_count; i++)
-{
-    printf("%i\n", sorts[i]);
-}
     return;
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
+    /*int arrows[MAX];
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+            if (locked[j][i] == false)
+            {
+            arrows[i] = 1;
+            }
+
+        }
+        locked[pairs[i].winner][pairs[i].loser] = true;
+
+    }
+    for (int j = 0; j < candidate_count; j++)
+    {
+        for (int i = 0; i < candidate_count; i++)
+        {
+            printf("%i\n", locked[j][i]);
+        }
+
+    }*/
 
     return;
 }
