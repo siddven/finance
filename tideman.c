@@ -212,10 +212,10 @@ void sort_pairs(void)
 
 
     }
-    for (int i = 0; i < pair_count; i++)
+    /*for (int i = 0; i < pair_count; i++)
     {
         printf("%i\n", sorts[i]);
-    }
+    }*/
 
 
     return;
@@ -224,20 +224,29 @@ void sort_pairs(void)
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    /*int arrows[MAX];
-    for (int i = 0; i < candidate_count; i++)
+    int arrows = 0;
+    int memory = 0;
+    for (int i = 0; i < pair_count; i++)
     {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            if (locked[j][i] == false)
-            {
-            arrows[i] = 1;
-            }
-
-        }
         locked[pairs[i].winner][pairs[i].loser] = true;
+        memory = i;
+
 
     }
+    for (int i = 0; i < pair_count; i++)
+    {
+        for (int j = 0; j < pair_count; j++)
+        {
+            if (locked[j][i] == true)
+            {
+            arrows += 1;
+            }
+        }
+    }
+
+
+
+
     for (int j = 0; j < candidate_count; j++)
     {
         for (int i = 0; i < candidate_count; i++)
@@ -245,7 +254,8 @@ void lock_pairs(void)
             printf("%i\n", locked[j][i]);
         }
 
-    }*/
+    }
+    printf("arrows: %i", arrows);
 
     return;
 }
