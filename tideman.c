@@ -243,7 +243,7 @@ void lock_pairs(void)
 
 
     //log the arrows pointing to each candidate, and helps lock pairs
-    for (int i = 0; i < pair_count; i++)
+    /*for (int i = 0; i < pair_count; i++)
     {
         //log arrows, have to use a nested nested for loop
         for (int j = 0; j < pair_count; j++)
@@ -267,7 +267,7 @@ void lock_pairs(void)
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
-    }
+    }*/
     //print locked array
     printf("locked\n");
     for (int i = 0; i < pair_count; i++)
