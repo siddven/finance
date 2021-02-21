@@ -222,35 +222,34 @@ void sort_pairs(void)
 }
 
 
-// Lock pairs into the candidate graph in order, without creating cycles
-
-bool is_circle(bool lock[MAX][MAX])
+bool circle(int start, int loser)
 {
-    int go = 0;
-    for (int i = 0; i < pair_count; i++)
-    {
-        if (locked[i] == false)
-        {
-            go ++;
-        }
-    }
-    if (go > 1)
+    if (loser == start)
     {
         return true;
     }
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (locked[loser][i])
+        {
+            if (circle(start, i))
+            {
+                return true;
+            }
+        }
+    }
     return false;
 }
+// Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
-        if (is_circle(locked))
+        if (!circle(pairs[i].winner, pairs[i].loser))
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
     }
-
-    return;
 }
 
 // Print the winner of the election
