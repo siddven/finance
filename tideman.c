@@ -220,10 +220,43 @@ void sort_pairs(void)
 
     return;
 }
+bool makes_circle(int cycle_start, int loser)
+{
+    if (loser == cycle_start)
+    {
+        // If the current loser is the cycle start
+        // The entry makes a circle
+        return true;
+    }
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (locked[loser][i])
+        {
+            if (makes_circle(cycle_start, i))
+            {
+                // Forward progress through the circle
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
+    // Recursive function to check if entry makes a circle
+
+for (int i = 0; i < pair_count; i++)
+    {
+        if (!makes_circle(pairs[i].winner, pairs[i].loser))
+        {
+            // Lock the pair unless it makes a circle
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
+    }
+
+/*
     //keep track of # of arrows pointing to each candidate
     int arrows[candidate_count];
 
@@ -243,6 +276,10 @@ void lock_pairs(void)
 
 
     //log the arrows pointing to each candidate, and helps lock pairs
+    for (int i = 0; i < pair_count; i++)
+    {
+        locked[pairs[i].winner][pairs[i].loser] = true;
+    }
     for (int i = 0; i < pair_count; i++)
     {
         //log arrows, have to use a nested nested for loop
@@ -268,6 +305,7 @@ void lock_pairs(void)
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
     }
+
     //print locked array
     printf("locked\n");
     for (int i = 0; i < pair_count; i++)
@@ -278,6 +316,7 @@ void lock_pairs(void)
         }
     }
 
+*/
 
     return;
 }
