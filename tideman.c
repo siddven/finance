@@ -224,10 +224,60 @@ void sort_pairs(void)
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
+    //keep track of # of arrows pointing to each candidate
+    int arrows[candidate_count];
+
+    //tells locked when to lock a pair
+    int go = 0;
+
+    //set each value in arrows array to 0
+    for (int i = 0; i < candidate_count; i++)
+    {
+        arrows[i] = 0;
+    }
+
+
+    //lock in the first pair no matter what
+    locked[pairs[0].winner][pairs[0].loser] = true;
+
+
+
+    //log the arrows pointing to each candidate, and helps lock pairs
     for (int i = 0; i < pair_count; i++)
     {
-    locked[pairs[i].winner][pairs[i].loser] = true;
+        //log arrows, have to use a nested nested for loop
+        for (int j = 0; j < pair_count; j++)
+        {
+            for (int n = 0; n < pair_count; n++)
+            {
+                if (locked[j][n] == true)
+            {
+                //logging the arrows here
+                arrows[n] += 1;
+            }
+            }
+        //checking mechanism
+        if (arrows[j] == 0)
+        {
+            go++;
+        }
+
+        }
+        if (go > 1)
+        {
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
     }
+    //print locked array
+    printf("locked\n");
+    for (int i = 0; i < pair_count; i++)
+    {
+        for (int j = 0; j < pair_count; j++)
+        {
+            printf("%d\n", locked[i][j]);
+        }
+    }
+
 
     return;
 }
