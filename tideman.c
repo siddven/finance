@@ -220,103 +220,35 @@ void sort_pairs(void)
 
     return;
 }
-bool makes_circle(int cycle_start, int loser)
+
+
+// Lock pairs into the candidate graph in order, without creating cycles
+
+bool is_circle(bool lock[MAX][MAX])
 {
-    if (loser == cycle_start)
+    int go = 0;
+    for (int i = 0; i < pair_count; i++)
     {
-        // If the current loser is the cycle start
-        // The entry makes a circle
-        return true;
-    }
-    for (int i = 0; i < candidate_count; i++)
-    {
-        if (locked[loser][i])
+        if (locked[i] == false)
         {
-            if (makes_circle(cycle_start, i))
-            {
-                // Forward progress through the circle
-                return true;
-            }
+            go ++;
         }
+    }
+    if (go > 1)
+    {
+        return true;
     }
     return false;
 }
-
-// Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    // Recursive function to check if entry makes a circle
-
-for (int i = 0; i < pair_count; i++)
-    {
-        if (!makes_circle(pairs[i].winner, pairs[i].loser))
-        {
-            // Lock the pair unless it makes a circle
-            locked[pairs[i].winner][pairs[i].loser] = true;
-        }
-    }
-
-/*
-    //keep track of # of arrows pointing to each candidate
-    int arrows[candidate_count];
-
-    //tells locked when to lock a pair
-    int go = 0;
-
-    //set each value in arrows array to 0
-    for (int i = 0; i < candidate_count; i++)
-    {
-        arrows[i] = 0;
-    }
-
-
-    //lock in the first pair no matter what
-    locked[pairs[0].winner][pairs[0].loser] = true;
-
-
-
-    //log the arrows pointing to each candidate, and helps lock pairs
     for (int i = 0; i < pair_count; i++)
     {
-        locked[pairs[i].winner][pairs[i].loser] = true;
-    }
-    for (int i = 0; i < pair_count; i++)
-    {
-        //log arrows, have to use a nested nested for loop
-        for (int j = 0; j < pair_count; j++)
-        {
-            for (int n = 0; n < pair_count; n++)
-            {
-                if (locked[j][n] == true)
-            {
-                //logging the arrows here
-                arrows[n] += 1;
-            }
-            }
-        //checking mechanism
-        if (arrows[j] == 0)
-        {
-            go++;
-        }
-
-        }
-        if (go > 1)
+        if (is_circle(locked))
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
     }
-
-    //print locked array
-    printf("locked\n");
-    for (int i = 0; i < pair_count; i++)
-    {
-        for (int j = 0; j < pair_count; j++)
-        {
-            printf("%d\n", locked[i][j]);
-        }
-    }
-
-*/
 
     return;
 }
