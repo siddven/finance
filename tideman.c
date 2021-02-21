@@ -226,27 +226,45 @@ void lock_pairs(void)
 {
     int arrows[candidate_count];
     int memory = 0;
-    bool go = false;
+    int go = 0;
     for (int i = 0; i < candidate_count; i++)
     {
         arrows[i] = 0;
     }
+    locked[pairs[0].winner][pairs[0].loser] = true;
     for (int i = 0; i < pair_count; i++)
     {
-        locked[pairs[i].winner][pairs[i].loser] = true;
-        memory = i;
-    }
-    for (int i = 0; i < pair_count; i++)
-    {
+        go = 0;
+
+
         for (int j = 0; j < pair_count; j++)
         {
             if (locked[i][j] == true)
             {
                 arrows[j] += 1;
             }
+            if (arrows[j] == 0)
+            {
+                go ++;
+            }
+
+        }
+
+        if (go > 0)
+        {
+        locked[pairs[i].winner][pairs[i].loser] = true;
+
+        memory = i;
         }
     }
-    for (int i = 0; i < candidate_count; i++)
+    for (int i = 0; i < pair_count; i++)
+    {
+        for (int j = 0; j < pair_count; j++)
+        {
+
+        }
+    }
+    /*for (int i = 0; i < candidate_count; i++)
     {
         if (arrows[i] == 0)
         {
@@ -256,7 +274,7 @@ void lock_pairs(void)
     if (go == false)
     {
         locked[memory][memory] = false;
-    }
+    }*/
 
     for (int j = 0; j < candidate_count; j++)
     {
