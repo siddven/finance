@@ -13,7 +13,7 @@ int avg;
         avg = avg / 3;
         float r = avg % 1;
         float sub = 1 - r;
-        if (r != 0.0)
+        if (r > 0.0)
         {
 
             if (r >= 0.5)
