@@ -36,23 +36,23 @@ int main(int argc, char *argv[])
 
     // TODO: Copy header from input file to output file
 
-    fread(&BYTES,sizeof(uint8_t),HEADER_SIZE,input);
-    fwrite(&BYTES,sizeof(uint8_t),HEADER_SIZE,output);
+    fread(&BYTES, sizeof(uint8_t), HEADER_SIZE, input);
+    fwrite(&BYTES, sizeof(uint8_t), HEADER_SIZE, output);
 
 
     // TODO: Read samples from input file and write updated data to output file
-    fseek(input,0,SEEK_END);
+    fseek(input, 0, SEEK_END);
     int end = ftell(input) - 44;
-    printf("%i",end);
+    printf("%i", end);
     int16_t buffer;
-    fseek(input,44,0);
-    fseek(output,44, 0);
+    fseek(input, 44, 0);
+    fseek(output, 44, 0);
 
 
-    while(fread(&buffer,sizeof(int16_t),1,input))
+    while (fread(&buffer, sizeof(int16_t), 1, input))
     {
         buffer = buffer * factor;
-         fwrite(&buffer,sizeof(int16_t),1,output);
+        fwrite(&buffer, sizeof(int16_t), 1, output);
 
     }
 
