@@ -16,7 +16,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         float sub = 1.0-r;
         if (r > 0)
         {
-            if (r >= 0.5)
+            if (r > 0.5)
             {
                 average = average / 3;
                 average += sub;
