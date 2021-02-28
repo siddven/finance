@@ -12,12 +12,12 @@ int avg;
         avg = image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed;
         avg = avg / 3;
         float r = avg % 1;
-        if (r != 0)
+        float sub = 1 - r;
+        if (r != 0.0)
         {
 
-            if (r > 0.5)
+            if (r >= 0.5)
             {
-                float sub = 1 - r;
                 avg += sub;
             }
             else
