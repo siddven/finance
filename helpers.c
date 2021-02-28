@@ -18,12 +18,12 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         {
             if (r > 0.5)
             {
-                average = average / 3;
+                average = average / 3.0;
                 average += sub;
             }
             else
             {
-                average = average / 3;
+                average = average / 3.0;
                 average -= r;
             }
         image[i][j].rgbtRed = average;
