@@ -11,6 +11,19 @@ int avg;
         {
         avg = image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed;
         avg = avg / 3;
+        if (avg % 1 != 0)
+        {
+            float r = avg % 1;
+            if (r >= 0.5)
+            {
+                float sub = 1 - r;
+                avg += sub;
+            }
+            else
+            {
+                avg -= r;
+            }
+        }
         image[i][j].rgbtRed = avg;
         image[i][j].rgbtGreen = avg;
         image[i][j].rgbtBlue = avg;
