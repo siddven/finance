@@ -14,7 +14,7 @@ int avg;
         float r = avg % 1;
         if (r != 0)
         {
-            
+
             if (r > 0.5)
             {
                 float sub = 1 - r;
