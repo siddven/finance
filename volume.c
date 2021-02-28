@@ -42,22 +42,22 @@ int main(int argc, char *argv[])
 
     // TODO: Read samples from input file and write updated data to output file
     fseek(input,0,SEEK_END);
-    int end = ftell(input) -44;
+    int end = ftell(input) - 44;
     printf("%i",end);
-    int16_t buffer[end];
+    int16_t buffer;
     fseek(input,44,0);
     fseek(output,44, 0);
 
-    fread(&buffer,sizeof(int16_t),end,input);
-    for (int i = 0; i <= end; i++)
+
+    while(fread(&buffer,sizeof(int16_t),1,input))
     {
-        buffer[i] = buffer[i] * factor;
+        buffer = buffer * factor;
+         fwrite(&buffer,sizeof(int16_t),1,output);
+
     }
 
 
 
-
-        fwrite(&buffer,sizeof(int16_t),end,output);
 
     // Close files
     fclose(input);
