@@ -131,7 +131,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
             }
 
-            if ( j == width && i == 0)
+            else if ( j == width && i == 0)
             {
 
 
@@ -175,7 +175,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             avgred = round(avgred);
             }
 
-            if (j == 0)
+            else if (j == 0)
             {
 
             avgblue =  buffer[i][j+1].rgbtBlue + buffer[i+1][j].rgbtBlue + buffer[i+1][j+1].rgbtBlue + buffer[i][j].rgbtBlue +
@@ -190,7 +190,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             avgblue = round(avgblue);
             avggreen = round(avggreen);
             avgred = round(avgred);
-
 
             }
             else
