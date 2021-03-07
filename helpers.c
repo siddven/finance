@@ -63,10 +63,10 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
 
-            if (i == 0)
+            if (i == 0 && j == 0)
             {
-                if (j == 0)
-            {
+
+
                 avgblue = buffer[i+1][j].rgbtBlue + buffer[i+1][j+1].rgbtBlue + buffer[i][j+1].rgbtBlue + buffer[i][j].rgbtBlue;
                 avgred = buffer[i+1][j].rgbtRed + buffer[i+1][j+1].rgbtRed + buffer[i][j+1].rgbtRed + buffer[i][j].rgbtRed;
                 avggreen = buffer[i+1][j].rgbtGreen + buffer[i+1][j+1].rgbtGreen + buffer[i][j+1].rgbtGreen + buffer[i][j].rgbtGreen;
@@ -80,7 +80,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
 
 
-            else
+            else if (i == 0)
             {
             avgblue =  buffer[i+1][j].rgbtBlue + buffer[i+1][j+1].rgbtBlue + buffer[i][j+1].rgbtBlue + buffer[i][j].rgbtBlue +
             buffer[i][j-1].rgbtBlue + buffer[i+1][j-1].rgbtBlue;
@@ -94,15 +94,13 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             avgblue = round(avgblue);
             avggreen = round(avggreen);
             avgred = round(avgred);
-
             }
 
-            }
-            if (i == height)
+
+            else if (i == height && j == 0)
             {
 
-                if (j == 0)
-                {
+
                 avgblue = buffer[i-1][j].rgbtBlue + buffer[i-1][j+1].rgbtBlue + buffer[i][j+1].rgbtBlue + buffer[i][j].rgbtBlue;
                 avgred = buffer[i-1][j].rgbtRed + buffer[i-1][j+1].rgbtRed + buffer[i][j+1].rgbtRed + buffer[i][j].rgbtRed;
                 avggreen = buffer[i-1][j].rgbtGreen + buffer[i-1][j+1].rgbtGreen + buffer[i][j+1].rgbtGreen + buffer[i][j].rgbtGreen;
@@ -113,9 +111,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 avgred = round(avgred);
                 avggreen = round(avggreen);
 
-                }
+            }
 
-            else {
+            else if (i == height) {
 
 
             avgblue =  buffer[i-1][j].rgbtBlue + buffer[i-1][j+1].rgbtBlue + buffer[i][j+1].rgbtBlue + buffer[i][j].rgbtBlue +
@@ -132,12 +130,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             avgred = round(avgred);
 
             }
-            }
-            if ( j == width)
+
+            if ( j == width && i == 0)
             {
 
-                if (i == 0)
-                {
+
                 avgblue = buffer[i][j-1].rgbtBlue + buffer[i+1][j].rgbtBlue + buffer[i+1][j-1].rgbtBlue + buffer[i][j].rgbtBlue;
                 avgred = buffer[i][j-1].rgbtRed + buffer[i-1][j].rgbtRed + buffer[i+1][j-1].rgbtRed + buffer[i][j].rgbtRed;
                 avggreen = buffer[i][j-1].rgbtGreen + buffer[i+1][j].rgbtGreen + buffer[i+1][j-1].rgbtGreen + buffer[i][j].rgbtGreen;
@@ -148,8 +145,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 avgred = round(avgred);
                 avggreen = round(avggreen);
 
-                }
-                if (i == height)
+            }
+            else if  (i == height && j == width)
                 {
                 avgblue = buffer[i-1][j-1].rgbtBlue + buffer[i-1][j].rgbtBlue + buffer[i-1][j-1].rgbtBlue + buffer[i][j].rgbtBlue;
                 avgred = buffer[i-1][j-1].rgbtRed + buffer[i-1][j].rgbtRed + buffer[i-1][j+1].rgbtRed + buffer[i][j].rgbtRed;
@@ -160,9 +157,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 avgblue = round(avgblue);
                 avgred = round(avgred);
                 avggreen = round(avggreen);
-
                 }
-            else
+
+            else if (j == width)
             {
             avgblue =  buffer[i][j+1].rgbtBlue + buffer[i+1][j].rgbtBlue + buffer[i+1][j+1].rgbtBlue + buffer[i][j].rgbtBlue +
             buffer[i][j-1].rgbtBlue + buffer[i+1][j-1].rgbtBlue;
@@ -176,16 +173,10 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             avgblue = round(avgblue);
             avggreen = round(avggreen);
             avgred = round(avgred);
+            }
 
-            }
-            }
             if (j == 0)
             {
-
-
-
-
-
 
             avgblue =  buffer[i][j+1].rgbtBlue + buffer[i+1][j].rgbtBlue + buffer[i+1][j+1].rgbtBlue + buffer[i][j].rgbtBlue +
             buffer[i-1][j].rgbtBlue + buffer[i-1][j+1].rgbtBlue;
