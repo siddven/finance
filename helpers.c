@@ -147,7 +147,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
 
 
-            else if (i == height-1 && j != 0 && j != width) {
+            else if (i == height-1 && j != 0 && j != width-1) {
 
 
             avgblue =  buffer[i-1][j].rgbtBlue + buffer[i-1][j+1].rgbtBlue + buffer[i][j+1].rgbtBlue + buffer[i][j].rgbtBlue +
