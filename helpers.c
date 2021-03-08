@@ -164,11 +164,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
             else if (j == width)
             {
-            avgblue =  buffer[i][j+1].rgbtBlue + buffer[i+1][j].rgbtBlue + buffer[i+1][j+1].rgbtBlue + buffer[i][j].rgbtBlue +
+            avgblue =  buffer[i][j-1].rgbtBlue + buffer[i+1][j].rgbtBlue + buffer[i+1][j-1].rgbtBlue + buffer[i][j].rgbtBlue +
             buffer[i][j-1].rgbtBlue + buffer[i+1][j-1].rgbtBlue;
-            avgred = buffer[i][j+1].rgbtRed + buffer[i+1][j].rgbtRed + buffer[i+1][j+1].rgbtRed + buffer[i][j].rgbtRed +
+            avgred = buffer[i][j-1].rgbtRed + buffer[i+1][j].rgbtRed + buffer[i+1][j-1].rgbtRed + buffer[i][j].rgbtRed +
             buffer[i][j-1].rgbtRed + buffer[i+1][j-1].rgbtRed;
-            avggreen = buffer[i][j+1].rgbtGreen + buffer[i+1][j].rgbtGreen + buffer[i+1][j+1].rgbtGreen + buffer[i][j].rgbtGreen +
+            avggreen = buffer[i][j-1].rgbtGreen + buffer[i+1][j].rgbtGreen + buffer[i+1][j-1].rgbtGreen + buffer[i][j].rgbtGreen +
             buffer[i][j-1].rgbtGreen + buffer[i+1][j-1].rgbtGreen;
             avgblue = avgblue / 6.0;
             avgred = avgred / 6.0;
