@@ -78,7 +78,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 avggreen = round(avggreen);
 
             }
-            else if (i == height && j == 0 && j != width-1)
+            else if (i == height-1 && j == 0)
             {
 
 
@@ -93,7 +93,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 avggreen = round(avggreen);
 
             }
-            else if ( j == width && i == 0)
+            else if ( j == width-1 && i == 0)
             {
 
 
@@ -127,7 +127,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
 
 
-            else if (i == 0)
+            else if (i == 0 && j != width-1 && j != 0)
             {
             avgblue =  buffer[i+1][j].rgbtBlue + buffer[i+1][j+1].rgbtBlue + buffer[i][j+1].rgbtBlue + buffer[i][j].rgbtBlue +
             buffer[i][j-1].rgbtBlue + buffer[i+1][j-1].rgbtBlue;
@@ -169,7 +169,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
 
 
-            else if (j == width-1)
+            else if (j == width-1 && i != height-1 && i != 0)
             {
             avgblue =  buffer[i][j-1].rgbtBlue + buffer[i+1][j].rgbtBlue + buffer[i+1][j-1].rgbtBlue + buffer[i][j].rgbtBlue +
             buffer[i-1][j].rgbtBlue + buffer[i-1][j-1].rgbtBlue;
@@ -185,7 +185,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             avgred = round(avgred);
             }
 
-            else if (j == 0)
+            else if (j == 0 && i != 0 && i != height-1)
             {
 
             avgblue =  buffer[i][j+1].rgbtBlue + buffer[i+1][j].rgbtBlue + buffer[i+1][j+1].rgbtBlue + buffer[i][j].rgbtBlue +
