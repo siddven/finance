@@ -1,6 +1,7 @@
 #include "helpers.h"
 #include "math.h"
 // Convert image to grayscale
+
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
     float avg;
@@ -15,7 +16,6 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         image[i][j].rgbtGreen = avg;
         image[i][j].rgbtBlue = avg;
         }
-
     }
     return;
 }
@@ -80,7 +80,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             }
             else if (i == height-1 && j == 0)
             {
-
 
                 avgblue = buffer[i-1][j].rgbtBlue + buffer[i-1][j+1].rgbtBlue + buffer[i][j+1].rgbtBlue + buffer[i][j].rgbtBlue;
                 avgred = buffer[i-1][j].rgbtRed + buffer[i-1][j+1].rgbtRed + buffer[i][j+1].rgbtRed + buffer[i][j].rgbtRed;
@@ -228,11 +227,123 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
     return;
 }
+int sobel(float x, float y)
 
+{
+    x = x*x;
+    y = y*y;
+    x = x+y;
+    x = sqrt(x);
+    if (x > 255)
+        {
+            x = 255;
+        }
+    return x;
+
+}
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
-    
-    return;
+    RGBTRIPLE buffer[height][width];
+    float avgblueX = 0;
+    float avgredX = 0;
+    float avggreenX = 0;
+    float avgblueY = 0;
+    float avgredY = 0;
+    float avggreenY = 0;
+
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            buffer[i][j] = image[i][j];
+        }
+    }
+    for (int i = 0; i < height; i++ )
+    {
+        avgblueX = 0;
+        avgredX = 0;
+        avggreenX = 0;
+        avgblueY = 0;
+        avgredY = 0;
+        avggreenY = 0;
+
+
+        for (int j = 0; j < width; j++)
+        {
+
+
+
+            if (i == 0 && j == 0)
+            {
+            }
+            else if (i == height-1 && j == 0)
+            {
+
+            }
+            else if ( j == width-1 && i == 0)
+            {
+
+            }
+            else if  (i == height-1 && j == width-1)
+                {
+
+                }
+            else if (i == 0 && j != width-1 && j != 0)
+            {
+
+            }
+            else if (j == width-1 && i != 0 && i != height-1)
+            {
+
+            }
+            else if (i == height && j!= width-1 && j != 0)
+            {
+
+            }
+            else if (j == 0 && i != height-1 && i != 0)
+            {
+
+            }
+        else
+        {
+        //Calculate GX for all color channels
+        avgblueX = buffer[i][j].rgbtBlue*0 + buffer[i+1][j].rgbtBlue*0 + buffer[i+1][j+1].rgbtBlue*1 + buffer[i][j+1].rgbtBlue*2 + buffer[i-1][j].rgbtBlue*0+
+        buffer[i-1][j-1].rgbtBlue*-1 + buffer[i][j-1].rgbtBlue*-2 + buffer[i-1][j+1].rgbtBlue*1 + buffer[i+1][j-1].rgbtBlue*-1;
+
+        avgredX = buffer[i][j].rgbtRed*0 + buffer[i+1][j].rgbtRed*0 + buffer[i+1][j+1].rgbtRed*1 + buffer[i][j+1].rgbtRed*2 + buffer[i-1][j].rgbtRed*0+
+        buffer[i-1][j-1].rgbtRed*-1 + buffer[i][j-1].rgbtRed*-2 + buffer[i-1][j+1].rgbtRed*1 + buffer[i+1][j-1].rgbtRed*-1;
+
+        avggreenX = buffer[i][j].rgbtGreen*0 + buffer[i+1][j].rgbtGreen*0 + buffer[i+1][j+1].rgbtGreen*1 + buffer[i][j+1].rgbtGreen*2 + buffer[i-1][j].rgbtGreen*0+
+        buffer[i-1][j-1].rgbtGreen*-1 + buffer[i][j-1].rgbtGreen*-2 + buffer[i-1][j+1].rgbtGreen*1 + buffer[i+1][j-1].rgbtGreen*-1;
+
+
+
+        //Calculate Gy for all color channels
+        avgblueY = buffer[i][j].rgbtBlue*0 + buffer[i+1][j].rgbtBlue*2 + buffer[i+1][j+1].rgbtBlue*-1 + buffer[i][j+1].rgbtBlue*0 + buffer[i-1][j].rgbtBlue*-2+
+        buffer[i-1][j-1].rgbtBlue*-1 + buffer[i][j-1].rgbtBlue*0 + buffer[i-1][j+1].rgbtBlue*1 + buffer[i+1][j-1].rgbtBlue*1;
+
+        avgredY = buffer[i][j].rgbtRed*0 + buffer[i+1][j].rgbtRed*2 + buffer[i+1][j+1].rgbtRed*-1 + buffer[i][j+1].rgbtRed*0 + buffer[i-1][j].rgbtRed*-2+
+        buffer[i-1][j-1].rgbtRed*-1 + buffer[i][j-1].rgbtRed*0 + buffer[i-1][j+1].rgbtRed*1 + buffer[i+1][j-1].rgbtRed*1;
+
+        avggreenY = buffer[i][j].rgbtGreen*0 + buffer[i+1][j].rgbtGreen*2 + buffer[i+1][j+1].rgbtGreen*-1 + buffer[i][j+1].rgbtGreen*0 + buffer[i-1][j].rgbtGreen*-2+
+        buffer[i-1][j-1].rgbtGreen*-1 + buffer[i][j-1].rgbtGreen*0 + buffer[i-1][j+1].rgbtGreen*1 + buffer[i+1][j-1].rgbtGreen*1;
+
+        //Calculate square root of Gx and Gy
+        avgblueX = sobel(avgblueX, avgblueY);
+        avgredX = sobel(avgredX, avgredY);
+        avggreenX = sobel(avggreenX, avggreenY);
+        }
+
+        image[i][j].rgbtBlue = avgblueX;
+        image[i][j].rgbtGreen = avggreenX;
+        image[i][j].rgbtRed = avgredX;
+    }
+
 }
+    return;
+
+}
+
+
 
