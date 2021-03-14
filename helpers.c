@@ -234,6 +234,7 @@ int sobel(float x, float y)
     y = y*y;
     x = x+y;
     x = sqrt(x);
+    x = round(x);
     if (x > 255)
         {
             x = 255;
