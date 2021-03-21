@@ -31,7 +31,6 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             RGBTRIPLE buffer = image[i][j];
             image[i][j] = image[i][width-j-1];
             image[i][width-j-1] = buffer;
-
         }
     }
 
@@ -113,16 +112,13 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 avgblue = buffer[i-1][j-1].rgbtBlue + buffer[i-1][j].rgbtBlue + buffer[i][j-1].rgbtBlue + buffer[i][j].rgbtBlue;
                 avgred = buffer[i-1][j-1].rgbtRed + buffer[i-1][j].rgbtRed + buffer[i][j-1].rgbtRed + buffer[i][j].rgbtRed;
                 avggreen = buffer[i-1][j-1].rgbtGreen + buffer[i-1][j].rgbtGreen + buffer[i][j-1].rgbtGreen + buffer[i][j].rgbtGreen;
-
                 avgblue = avgblue / 4.0;
                 avgred = avgred / 4.0;
                 avggreen = avggreen / 4.0;
-
                 avgblue = round(avgblue);
                 avgred = round(avgred);
                 avggreen = round(avggreen);
                 }
-
 
 
             else if (i == 0 && j != width-1 && j != 0)
@@ -363,28 +359,104 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             //EDGES
             else if (i == 0 && j != width-1 && j != 0)
             {
-                //for top edge
-                
-            }
+            //for top edge
 
+            avgblueX = buffer[i+1][j+1].rgbtBlue*1 + buffer[i][j+1].rgbtBlue*2 + buffer[i][j-1].rgbtBlue*-2 + buffer[i+1][j-1].rgbtBlue*-1;
+
+            avgredX = buffer[i+1][j+1].rgbtRed*1 + buffer[i][j+1].rgbtRed*2 + buffer[i][j-1].rgbtRed*-2 + buffer[i+1][j-1].rgbtRed*-1;
+
+            avggreenX = buffer[i+1][j+1].rgbtGreen*1 + buffer[i][j+1].rgbtGreen*2 + buffer[i][j-1].rgbtGreen*-2 + buffer[i+1][j-1].rgbtGreen*-1;
+
+            avgblueY = buffer[i+1][j+1].rgbtBlue*1 + buffer[i][j+1].rgbtBlue*2 + buffer[i+1][j-1].rgbtBlue*1;
+
+            avgredY = buffer[i+1][j+1].rgbtRed*1 + buffer[i][j+1].rgbtRed*2 + buffer[i+1][j-1].rgbtRed*1;
+
+            avggreenY = buffer[i+1][j+1].rgbtGreen*1 + buffer[i][j+1].rgbtGreen*2 + buffer[i+1][j-1].rgbtGreen*1;
+            avgblueX = sobel(avgblueX, avgblueY);
+            avgredX = sobel(avgredX, avgredY);
+            avggreenX = sobel(avggreenX, avggreenY);
+
+            }
 
             else if (j == width-1 && i != 0 && i != height-1)
             {
                 //for right edge
 
-            
+            avgblueX =  buffer[i][j-1].rgbtBlue*-2 + buffer[i+1][j-1].rgbtBlue*-1 + buffer[i-1][j-1].rgbtBlue*-1;
+
+            avgredX = buffer[i][j-1].rgbtRed*-2 + buffer[i+1][j-1].rgbtRed*-1 + buffer[i-1][j-1].rgbtRed*-1;
+
+            avggreenX = buffer[i][j-1].rgbtGreen*-2 + buffer[i+1][j-1].rgbtGreen*-1 + buffer[i-1][j-1].rgbtGreen*-1;
+
+            avgblueY = buffer[i+1][j].rgbtBlue*2 + buffer[i+1][j-1].rgbtBlue*1 + buffer[i-1][j].rgbtBlue*-2 + buffer[i-1][j-1].rgbtBlue*-1;
+
+            avgredY = buffer[i+1][j].rgbtRed*2 + buffer[i+1][j-1].rgbtRed*1 + buffer[i-1][j].rgbtRed*-2 + buffer[i-1][j-1].rgbtRed*-1;
+
+            avggreenY = buffer[i+1][j].rgbtGreen*2 + buffer[i+1][j-1].rgbtGreen*1 + buffer[i-1][j].rgbtGreen*-2 + buffer[i-1][j-1].rgbtGreen*-1;
 
 
+
+            avgblueX = sobel(avgblueX, avgblueY);
+
+            avgredX = sobel(avgredX, avgredY);
+
+            avggreenX = sobel(avggreenX, avggreenY);
             }
+
             else if (i == height-1 && j!= width-1 && j != 0)
             {
-                
 
+            avgblueX  =  buffer[i-1][j].rgbtBlue*0 + buffer[i-1][j+1].rgbtBlue*1 + buffer[i][j+1].rgbtBlue*2 + buffer[i][j].rgbtBlue*0 +
+            buffer[i][j-1].rgbtBlue*-2 + buffer[i-1][j-1].rgbtBlue*-1;
+
+            avgredX = buffer[i-1][j].rgbtRed*0 + buffer[i-1][j+1].rgbtRed*1 + buffer[i][j+1].rgbtRed*2 + buffer[i][j].rgbtRed*0 +
+            buffer[i][j-1].rgbtRed*-2 + buffer[i-1][j-1].rgbtRed*-1;
+
+            avggreenX = buffer[i-1][j].rgbtGreen*0 + buffer[i-1][j+1].rgbtGreen*1 + buffer[i][j+1].rgbtGreen*2 + buffer[i][j].rgbtGreen*0 +
+            buffer[i][j-1].rgbtGreen*-2 + buffer[i-1][j-1].rgbtGreen*-1;
+
+            avgblueY =  buffer[i-1][j].rgbtBlue*-2 + buffer[i-1][j+1].rgbtBlue*-1 + buffer[i][j+1].rgbtBlue*0 + buffer[i][j].rgbtBlue*0 +
+            buffer[i][j-1].rgbtBlue*0 + buffer[i-1][j-1].rgbtBlue*-1;
+
+            avgredY = buffer[i-1][j].rgbtRed*-2 + buffer[i-1][j+1].rgbtRed*-1 + buffer[i][j+1].rgbtRed*0 + buffer[i][j].rgbtRed*0 +
+            buffer[i][j-1].rgbtRed*0 + buffer[i-1][j-1].rgbtRed*-1;
+
+            avggreenY = buffer[i-1][j].rgbtGreen*-2 + buffer[i-1][j+1].rgbtGreen*-1 + buffer[i][j+1].rgbtGreen*0 + buffer[i][j].rgbtGreen*0 +
+            buffer[i][j-1].rgbtGreen*0 + buffer[i-1][j-1].rgbtGreen*-1;
+
+            avgblueX = sobel(avgblueX, avgblueY);
+
+            avgredX = sobel(avgredX, avgredY);
+
+            avggreenX = sobel(avggreenX, avggreenY);
 
             }
             else if (j == 0 && i != height-1 && i != 0)
             {
-                
+            avgblueX =  buffer[i][j+1].rgbtBlue*2 + buffer[i+1][j].rgbtBlue*0 + buffer[i+1][j+1].rgbtBlue*1 + buffer[i][j].rgbtBlue*0 +
+            buffer[i-1][j].rgbtBlue*0 + buffer[i-1][j+1].rgbtBlue*1;
+
+            avgredX = buffer[i][j+1].rgbtRed*2 + buffer[i+1][j].rgbtRed*0 + buffer[i+1][j+1].rgbtRed*1 + buffer[i][j].rgbtRed*0 +
+            buffer[i-1][j].rgbtRed*0 + buffer[i-1][j+1].rgbtRed*1;
+
+            avggreenX = buffer[i][j+1].rgbtGreen*2 + buffer[i+1][j].rgbtGreen*0 + buffer[i+1][j+1].rgbtGreen*1 + buffer[i][j].rgbtGreen*0 +
+            buffer[i-1][j].rgbtGreen*0 + buffer[i-1][j+1].rgbtGreen*1;
+
+            avgblueY =  buffer[i][j+1].rgbtBlue*0 + buffer[i+1][j].rgbtBlue*2 + buffer[i+1][j+1].rgbtBlue*1 + buffer[i][j].rgbtBlue*0 +
+            buffer[i-1][j].rgbtBlue*-2 + buffer[i-1][j+1].rgbtBlue*-1;
+
+            avgredY = buffer[i][j+1].rgbtRed*0 + buffer[i+1][j].rgbtRed*2 + buffer[i+1][j+1].rgbtRed*1 + buffer[i][j].rgbtRed*0 +
+            buffer[i-1][j].rgbtRed*-2 + buffer[i-1][j+1].rgbtRed*-1;
+
+            avggreenY = buffer[i][j+1].rgbtGreen*0 + buffer[i+1][j].rgbtGreen*2 + buffer[i+1][j+1].rgbtGreen*1 + buffer[i][j].rgbtGreen*0 +
+            buffer[i-1][j].rgbtGreen*-2 + buffer[i-1][j+1].rgbtGreen*-1;
+
+            avgblueX = sobel(avgblueX, avgblueY);
+
+            avgredX = sobel(avgredX, avgredY);
+
+            avggreenX = sobel(avggreenX, avggreenY);
+
 
             }
         else
