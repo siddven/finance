@@ -368,11 +368,11 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 
             avggreenX = buffer[i+1][j+1].rgbtGreen*1 + buffer[i][j+1].rgbtGreen*2 + buffer[i][j-1].rgbtGreen*-2 + buffer[i+1][j-1].rgbtGreen*-1;
 
-            avgblueY = buffer[i+1][j+1].rgbtBlue*1 + buffer[i][j+1].rgbtBlue*2 + buffer[i+1][j-1].rgbtBlue*1;
+            avgblueY = buffer[i+1][j+1].rgbtBlue*1 + buffer[i][j+1].rgbtBlue*0 + buffer[i+1][j-1].rgbtBlue*1;
 
-            avgredY = buffer[i+1][j+1].rgbtRed*1 + buffer[i][j+1].rgbtRed*2 + buffer[i+1][j-1].rgbtRed*1;
+            avgredY = buffer[i+1][j+1].rgbtRed*1 + buffer[i][j+1].rgbtRed*0 + buffer[i+1][j-1].rgbtRed*1;
 
-            avggreenY = buffer[i+1][j+1].rgbtGreen*1 + buffer[i][j+1].rgbtGreen*2 + buffer[i+1][j-1].rgbtGreen*1;
+            avggreenY = buffer[i+1][j+1].rgbtGreen*1 + buffer[i][j+1].rgbtGreen*0 + buffer[i+1][j-1].rgbtGreen*1;
 
             avgblueX = sobel(avgblueX, avgblueY);
             avgredX = sobel(avgredX, avgredY);
