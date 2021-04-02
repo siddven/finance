@@ -66,7 +66,7 @@ unsigned int hash(const char *word)
 // Loads dictionary into memory, returning true if successful, else false
 bool load(const char *dictionary)
 {
-    char newword[LENGTH+1];
+    char newword[LENGTH + 1];
     FILE *dict = fopen(dictionary, "r");
     if (dict == NULL)
     {
@@ -76,15 +76,15 @@ bool load(const char *dictionary)
     {
         node *n = malloc(sizeof(node));
 
-    if (n == NULL)
-    {
-        return false;
-    }
-    strcpy(n->word, newword);
-    h = hash(newword);
-    n->next = table[h];
-    table[h] = n;
-    words ++;
+        if (n == NULL)
+        {
+            return false;
+        }
+        strcpy(n->word, newword);
+        h = hash(newword);
+        n->next = table[h];
+        table[h] = n;
+        words ++;
     }
     fclose(dict);
     return true;
