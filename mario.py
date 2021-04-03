@@ -1,6 +1,7 @@
-height = int(input("Height: "))
+from cs50 import get_int
+height = get_int("Height: ")
 while height < 1 or height > 8:
-    height = int(input("Height: "))
+    height = get_int("Height: ")
 
 n = 0
 for i in range(height):
