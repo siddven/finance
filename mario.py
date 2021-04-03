@@ -9,7 +9,7 @@ for i in range(height):
     u = height - i
     u -= 1
     for j in range(u):
-        print(" ",end="")
+        print(" ", end="")
     for a in range(n):
         print("#", end="")
 
@@ -17,11 +17,4 @@ for i in range(height):
     print(" ", end="")
     for m in range(n):
         print("#", end="")
-    print("\n",end = "")
-
-
-
-
-
-
-
+    print("\n", end="")
