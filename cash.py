@@ -1,6 +1,6 @@
 from cs50 import get_float
 
-change = get_float("Change:");
+change = get_float("Change:")
 
 while change <= 0:
     change = get_float("Change:")
@@ -25,9 +25,4 @@ while rounder > 0:
     elif rounder >= 25:
         rounder -= 25
         counter += 1
-
-
 print(counter)
-
-
-
