@@ -36,6 +36,7 @@ def word(text):
     for i in range(len(text)):
         if ord(text[i]) == 32:
             words += 1
+    words += 1
     return words
 
 def sentence(text):
