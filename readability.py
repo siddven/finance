@@ -1,7 +1,9 @@
 from cs50 import get_string
 
+
 def main():
     text = get_string("Text:")
+
     average_letter = 100/word(text)
     L = letter(text) * average_letter
     S = sentence(text) * average_letter
@@ -20,7 +22,10 @@ def main():
         print("Grade 16+")
 
     if index > 1 and index <= 16:
-        print("Grade",int(index))
+        print("Grade", int(index))
+
+
+# average number of letters
 
 
 def letter(text):
@@ -31,6 +36,9 @@ def letter(text):
             letters += 1
     return letters
 
+# average number of words
+
+
 def word(text):
     words = 0.0
     for i in range(len(text)):
@@ -38,6 +46,9 @@ def word(text):
             words += 1
     words += 1
     return words
+
+# number of sentences
+
 
 def sentence(text):
     sentences = 0.0
