@@ -1,1 +1,1 @@
-SELECT tempo FROM songs ORDER BY COUNT(tempo);
+SELECT name, COUNT(tempo) FROM songs ORDER BY COUNT(tempo);
