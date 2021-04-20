@@ -1,1 +1,1 @@
-SELECT title FROM movies WHERE year == 2018 OR year > 2018 AND title == "Avengers: Infinity War";
+SELECT title FROM movies WHERE year == 2018 OR year > 2018 ORDER BY title ASC;
