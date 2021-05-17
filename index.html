@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+
+
+            // TODO: Add code to check answers to questions
+
+
+            function checkMult(event)
+            {
+                var trigger = event.srcElement.value;
+
+                if (trigger == "la")
+                {
+                   document.querySelector("#la").style.backgroundColor = "red";
+                   document.querySelector("#display").innerHTML = "Incorrect";
+
+                }
+                else if (trigger == "boulder")
+                {
+                   document.querySelector("#boulder").style.backgroundColor = "red";
+                   document.querySelector("#display").innerHTML = "Incorrect";
+
+                }
+                else if (trigger == "portland")
+                {
+                   document.querySelector("#portland").style.backgroundColor = "red";
+                   document.querySelector("#display").innerHTML = "Incorrect";
+
+                }
+                else
+                {
+                   document.querySelector("#wn").style.backgroundColor = "green";
+                   document.querySelector("#display").innerHTML = "Correct!";
+                }
+
+            }
+
+
+            function freeResponse()
+            {
+                let answer = document.querySelector("#freeresponse").value;
+                if (answer != "obama")
+                {
+                    document.querySelector("#display2").innerHTML = "Incorrect";
+                    document.querySelector("#freeresponse").style.backgroundColor = "red";
+
+                }
+                else
+                {
+                    document.querySelector("#display2").innerHTML = "Correct!";
+                    document.querySelector("#freeresponse").style.backgroundColor = "green";
+                }
+
+            }
+
+
+
+        </script>
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <!-- TODO: Add multiple choice question here -->
+                <h3>Where was John Cena born?</h3>
+                <button class = "answer" id = "la" value = "la" onclick = "checkMult(event)">Los Angeles, California</button>
+                <button class = "answer" id = "boulder" value = "boulder" onclick = "checkMult(event)">Boulder, Colorado</button>
+                <button class = "answer" id = "portland" value = "portland" onclick = "checkMult(event)">Portland, Maine</button>
+                <button class = "answer" id = "wn" value = "wn" onclick = "checkMult(event)">West Newbury, Massachusetts</button>
+
+                <p id = "display"></p>
+
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+
+                <!-- TODO: Add free response question here -->
+                <h3>What is Obama's last name?</h3>
+
+                <form onsubmit = "freeResponse(); return false;">
+                    <input type="text" placeholder = "Enter your answer" id = "freeresponse"></input>
+                    <input type="submit">
+
+                </form>
+                <p id = "display2"></p>
+
+            </div>
+
+        </div>
+    </body>
+</html>
