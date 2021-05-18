@@ -1,0 +1,57 @@
+body {
+    color: black;
+    background-color: #1762b3;
+    text-align: center;
+}
+
+h1 {
+    position: relative;
+    top: 50px;
+}
+#firstdesc {
+    position: relative;
+    top: 50px;
+}
+#button-group {
+    position: relative;
+    top: 100px;
+}
+.sidd-image {
+    position: relative;
+    top: 70px;
+}
+
+#about-div
+{
+    position: relative;
+    top: 100px;
+}
+
+.about-h2 {
+    font-size: 25px;
+    padding: 10px;
+}
+
+#imgbuttons {
+    position: relative;
+    top: 100px;
+}
+
+#bugout {
+    display: none;
+}
+
+#spacealien
+{
+    display: none;
+}
+
+#nosetwirl
+{
+    display: none;
+}
+
+#chipmunk
+{
+    display: none;
+}

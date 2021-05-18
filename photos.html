@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+
+
+        <title>Animations</title>
+         <script>
+         document.addEventListener("DOMContentLoaded", listen);
+         let img = document.getElementById("mult-image");
+         function changeImage(event)
+         {
+
+             trigger = event.srcElement.value;
+             if (trigger == "1")
+             {
+                img.src = "";
+             }
+             else if (trigger == "2")
+             {
+                img.src = "https://ide-54ea4f00240b478d87e928d6814356a1-8080.cs50.ws/spacealien.png";
+             }
+             else if (trigger == "3")
+             {
+                img.src = "nosetwirl.png";
+             }
+             else
+             {
+                img.src = "bugout.png";
+             }
+
+
+         }
+
+
+
+        </script>
+
+    </head>
+
+    <body>
+        <nav id = "navbar" class="navbar navbar-expand-sm bg-dark navbar-dark" id = "topNav">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="index.html">Siddloo</a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class = "navbar-nav">
+              <li class = "nav-item"><a class = "nav-link" href="about.html"><i class="fas fa-user "></i> About</a></li>
+              <li class = "nav-item"><a class = "nav-link" href="photos.html"><i class="far fa-image"></i> Photos</a></li>
+              <li class = "nav-item"><a class = "nav-link" href="animations.html"><i class="fas fa-video"></i> Animations</a></li>
+              <li class = "nav-item"><a class = "nav-link" href="tech.html"><i class="fas fa-wrench"></i> Tech Support</a></li>
+
+          </ul>
+          </div>
+
+        </nav>
+        <h1>Photos</h1>
+        <div class = "sidd-image">
+        <img id = "mult-image" src = "sidd.png" class = "img-thumbnail">
+        <img id = "bugout" src = "bugout.png" class = "img-thumbnail">
+        <img id = "spacealien" src = "spacealien.png" class = "img-thumbnail">
+        <img id = "nosetwirl" src = "nosetwirl.png" class = "img-thumbnail">
+        <img id = "chipmunk" src = "chipmunk.png" class = "img-thumbnail">
+
+        </div>
+
+          <div id = "imgbuttons" class="btn-group mr-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-dark" onclick = "changeImage(event)" value = "1">1</button>
+                <button type="button" class="btn btn-dark" onclick = "changeImage(event)" value = "2">2</button>
+                <button type="button" class="btn btn-dark" onclick = "changeImage(event)" value = "3">3</button>
+                <button type="button" class="btn btn-dark" onclick = "changeImage(event)" value = "4">4</button>
+          </div>
+
+
+    </body>
+    </html>
+
