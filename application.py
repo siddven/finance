@@ -109,12 +109,33 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
-
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():
     """Get stock quote."""
-    return apology("TODO")
+
+    if request.method == "GET":
+        return render_template("quote.html")
+
+
+    elif request.method == "POST":
+        quote = request.form.get("symbol")
+        symbol = lookup(quote)
+        if symbol == None:
+            return apology("Company does not exist")
+        name = symbol["name"]
+        price = symbol["price"]
+
+        line = "One stock of "+ name + " is worth " + str(price)
+
+        return render_template("quoted.html",line=line)
+
+
+
+
+
+
+
 
 
 @app.route("/register", methods=["GET","POST"])
