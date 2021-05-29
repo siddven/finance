@@ -126,7 +126,7 @@ def quote():
         name = symbol["name"]
         price = symbol["price"]
 
-        line = "One stock of "+ name + " is worth " + str(price)
+        line = "One stock of "+ name + " is worth " + str(usd(price))
 
         return render_template("quoted.html",line=line)
 
