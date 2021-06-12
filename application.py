@@ -173,7 +173,7 @@ def quote():
 
     if request.method == "POST":
 
-        quote = request.form.get("quote")
+        quote = request.form.get("symbol")
         symbol = lookup(quote)
         if not symbol:
             return apology("INVALID SYMBOL")
