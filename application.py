@@ -67,6 +67,15 @@ def buy():
     if request.method == "POST":
         quote = request.form.get("symbol")
         symbol = lookup(quote)
+
+
+
+        if not symbol or not shares:
+            return apology("INVALID SYMBOL OR SHARES")
+
+        elif money < total:
+            return apology("CANNOT AFFORD")
+
         shares = request.form.get("shares")
         price = symbol["price"]
         total = price*int(shares)
@@ -74,11 +83,6 @@ def buy():
         money = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
         money = money[0]["cash"]
 
-        if not symbol or not shares:
-            return apology("INVALID SYMBOL OR SHARES")
-
-        elif money < total:
-            return apology("CANNOT AFFORD")
 
 
         # for history
