@@ -68,6 +68,9 @@ def buy():
         quote = request.form.get("symbol")
         symbol = lookup(quote)
         shares = request.form.get("shares")
+        user_id = session["user_id"]
+        money = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
+        money = money[0]["cash"]
 
 
         if not symbol or not shares:
@@ -78,9 +81,7 @@ def buy():
 
         price = symbol["price"]
         total = price*int(shares)
-        user_id = session["user_id"]
-        money = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
-        money = money[0]["cash"]
+
 
 
 
