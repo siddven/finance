@@ -75,10 +75,11 @@ def buy():
 
         if not symbol or not shares:
             return apology("INVALID SYMBOL OR SHARES")
+
         price = symbol["price"]
         total = price*int(shares)
 
-        elif money < total:
+        if money < total:
             return apology("CANNOT AFFORD")
 
 
