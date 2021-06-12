@@ -67,7 +67,7 @@ def buy():
     if request.method == "POST":
         quote = request.form.get("symbol")
         symbol = lookup(quote)
-
+        shares = request.form.get("shares")
 
 
         if not symbol or not shares:
@@ -76,7 +76,6 @@ def buy():
         elif money < total:
             return apology("CANNOT AFFORD")
 
-        shares = request.form.get("shares")
         price = symbol["price"]
         total = price*int(shares)
         user_id = session["user_id"]
