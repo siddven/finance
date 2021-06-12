@@ -46,14 +46,70 @@ if not os.environ.get("API_KEY"):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    return apology("TODO")
+
+    user_id = session["user_id"]
+    purchases = db.execute("SELECT * FROM purchases WHERE buyer_id = ?", user_id)
+    user_cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
+    user_cash = user_cash[0]["cash"]
+    total = 0
+    for purchase in purchases:
+        total += purchase["total"]
+
+    total += user_cash
+    return render_template("index.html", purchases=purchases, total=total, user_cash=user_cash)
 
 
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
     """Buy shares of stock"""
-    return apology("TODO")
+
+    if request.method == "POST":
+        quote = request.form.get("symbol")
+        symbol = lookup(quote)
+        shares = request.form.get("shares")
+        price = symbol["price"]
+        total = price*int(shares)
+        user_id = session["user_id"]
+        money = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
+        money = money[0]["cash"]
+
+        if not symbol or not shares:
+            return apology("INVALID SYMBOL OR SHARES")
+
+        elif money < total:
+            return apology("CANNOT AFFORD")
+
+
+        # for history
+
+        db.execute("INSERT INTO history (buyer_id, symbol, shares, price) VALUES (?,?,?,?)",user_id, quote, shares, price)
+        db.execute("UPDATE users SET cash = cash - ? WHERE id = ?", total, user_id)
+
+        # for purchases
+
+        user = db.execute("SELECT buyer_id, symbol FROM purchases WHERE buyer_id = ?", user_id)
+
+        if not user:
+            print("if")
+            db.execute("INSERT INTO purchases (buyer_id, total, shares, price, symbol, name) VALUES (?,?,?,?,?,?)",user_id, total, shares, price, quote, symbol["name"])
+            return redirect("/")
+
+
+        elif quote == user[0]["symbol"] and user_id == user[0]["buyer_id"]:
+            print("elif")
+            db.execute("UPDATE purchases SET total = total + ?, shares = shares + ?, price = ?", total, shares, price)
+            return redirect("/")
+
+        else:
+            print("else")
+            db.execute("INSERT INTO purchases (buyer_id, total, shares, price, symbol, name) VALUES (?,?,?,?,?,?)",user_id, total, shares, price, quote, symbol["name"])
+            return redirect("/")
+
+        return redirect("/")
+
+
+    return render_template("buy.html")
 
 
 @app.route("/history")
@@ -109,60 +165,48 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():
     """Get stock quote."""
 
-    if request.method == "GET":
-        return render_template("quote.html")
+    if request.method == "POST":
 
-
-    elif request.method == "POST":
-        quote = request.form.get("symbol")
+        quote = request.form.get("quote")
         symbol = lookup(quote)
-        if symbol == None:
-            return apology("Company does not exist")
-        name = symbol["name"]
-        price = symbol["price"]
+        if not symbol:
+            return apology("INVALID SYMBOL")
 
-        line = "One stock of "+ name + " is worth " + str(usd(price))
+        message = "One share of " + symbol["name"] + " is worth " + usd(symbol["price"])
+        return render_template("quoted.html",message = message)
 
-        return render_template("quoted.html",line=line)
-
+    return render_template("quote.html")
 
 
 
-
-
-
-
-
-@app.route("/register", methods=["GET","POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
-    username = request.form.get("username")
-    password = request.form.get("password")
-    confirmation = request.form.get("confirmation")
-    users = db.execute("SELECT username FROM users")
+
     if request.method == "POST":
+        name = request.form.get("username")
+        password = request.form.get("password")
+        confirmation = request.form.get("confirmation")
+
         try:
-            if not username:
-                return apology("No username")
-            elif not password or not confirmation:
-                return apology("No password/comfirmation")
+            if not name or not password or not confirmation:
+                return apology("NO NAME/PASSWORD/CONFIRMATION")
+
             elif password != confirmation:
-                return apology("Password and confirmation do not match")
-            else:
-                hash_value = generate_password_hash(password)
-                db.execute("INSERT INTO users (username, hash) VALUES(?, ?)", username, hash_value)
-                redirect("/login")
+                return apology("PASSWORD AND CONFIRMATION DO NOT MATCH")
+
+            user_hash = generate_password_hash(password)
+            db.execute("INSERT INTO users (username, hash) VALUES(?, ?)",name, user_hash)
+            return redirect("/login")
 
         except (ValueError):
-            return apology("User already exists")
-
-
-
+            return apology("USER ALREADY EXISTS")
 
     return render_template("register.html")
 
