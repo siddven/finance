@@ -56,6 +56,7 @@ def index():
         total += purchase["total"]
 
     total += user_cash
+
     return render_template("index.html", purchases=purchases, total=total, user_cash=user_cash)
 
 
@@ -81,9 +82,6 @@ def buy():
 
         if money < total:
             return apology("CANNOT AFFORD")
-
-
-
 
 
 
