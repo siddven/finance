@@ -220,7 +220,52 @@ def register():
 @login_required
 def sell():
     """Sell shares of stock"""
-    return apology("TODO")
+
+    user_id = session["user_id"]
+    company_list = db.execute("SELECT symbol FROM purchases WHERE buyer_id = ?", user_id)
+
+    if request.method == "POST":
+
+
+        sale = request.form.get("symbol")
+        print("sale" + sale)
+        shares = request.form.get("shares")
+        price = db.execute("SELECT price FROM purchases WHERE buyer_id = ? AND symbol = ?", user_id, sale)
+        price = price[0]["price"]
+        print(price)
+        price = int(price)
+        total = int(shares)*price
+        eligible_shares = db.execute("SELECT * FROM purchases WHERE buyer_id = ? AND symbol = ?", user_id, sale)
+        print(eligible_shares)
+        eligible_shares = eligible_shares[0]["shares"]
+
+        if int(shares) > int(eligible_shares):
+            return apology("TOO MANY SHARES")
+
+        elif int(shares) < 0:
+            return apology("INVALID AMOUNT OF SHARES")
+
+        db.execute("UPDATE purchases SET shares = shares - ? WHERE buyer_id = ? AND symbol = ?",int(shares), user_id, sale)
+        db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", total, user_id)
+        purchases = db.execute("SELECT * FROM purchases WHERE buyer_id = ?", user_id)
+        shares = int(shares)
+        shares = shares *-1
+        db.execute("INSERT INTO history (buyer_id, symbol, shares, price) VALUES (?,?,?,?)",user_id, sale, shares, price)
+
+        for purchase in purchases:
+            if purchase["shares"] == 0:
+                db.execute("DELETE FROM purchases WHERE buyer_id = ? AND symbol = ? ", purchase["buyer_id"], purchase["symbol"])
+
+
+
+        return redirect("/")
+
+
+
+
+
+    return render_template("sell.html", company_list = company_list)
+
 
 
 def errorhandler(e):
